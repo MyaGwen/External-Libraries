@@ -25,21 +25,25 @@ function ContactForm() {
             setMessage("Thank you for contacting us, we'll get back to you soon.")
         }
         methods.reset()
+        setTimeout(()=>{
+            setMessage("")
+        }, 10000)
 
     };
 
 
     return (
         <Container bg=' #242424' color= 'rgba(255, 255, 255, 0.87)' borderRadius={5} padding= '40px' marginX='auto' marginY={50}  >
+         <p style={{color: 'green'}}>{messsage ? messsage : null}</p>
             <FormProvider {...methods}>
                 <form onSubmit={methods.handleSubmit(onSubmit)}>
-                    {messsage ? messsage : <Stack>
+                     <Stack>
                         <FormInput name='name' label='Name' />
                         <FormInput name='email' label='Email' />
                         <FormInput name='subject' label='Subject' />
                         <FormTextArea name='message' label='Message' resize="none"/>
                         <Button color="#242424" type='submit' isLoading={methods.formState.isSubmitting} isDisabled={!methods.formState.isDirty}>Submit</Button>
-                    </Stack>}
+                    </Stack>
 
                 </form>
             </FormProvider>
